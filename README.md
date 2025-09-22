@@ -1,1 +1,3 @@
-# health_care_reminder
+# Femgineers-AI
+
+uvicorn main:app --reload
