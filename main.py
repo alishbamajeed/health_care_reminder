@@ -107,7 +107,15 @@ def run_schedule():
         time.sleep(1)
 
 # Ek hi thread start karna (duplicate threads avoid karne ke liye)
-threading.Thread(target=run_schedule, daemon=True).start()
+# threading.Thread(target=run_schedule, daemon=True).start()
+
+# 🚀 Scheduler ko FastAPI ke startup ke sath bind karna
+@app.on_event("startup")
+def start_scheduler():
+    threading.Thread(target=run_schedule, daemon=True).start()
+    print("✅ Scheduler started successfully!")
+
+
 
 
 # 🔗 External Client (Gemini)
